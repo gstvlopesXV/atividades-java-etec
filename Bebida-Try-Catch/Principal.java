@@ -19,8 +19,8 @@ public abstract class Principal {
 
 //      <!-- Inicio do Programa --!>
 		JOptionPane.showMessageDialog(null,
-				"             Desenvolvido por\n " + "Vinicius Amaro \n" + "Gustavo Lopes \n" + "Gedeão Lima \n"
-						+ "Andreus Alan \n" + "     Clique em Ok para Iniciar",
+				"Desenvolvido por:\n\n"
+						+ "Vinicius Amaro, \nGustavo Lopes,  \nGedeão Lima,  \nAndreus Alan, \nRafael Martins.",
 				"Java's Bar", JOptionPane.INFORMATION_MESSAGE);
 
 //      <!-- Opções Selecionar Bebida --!>
@@ -35,7 +35,7 @@ public abstract class Principal {
 					}
 					resp = "n";
 					resposta = "sim";
-				} // fim escolher bebida
+				}
 
 //      <!-- Opções Selecionar Ação --!>
 				while (resposta == "sim") {
@@ -45,11 +45,11 @@ public abstract class Principal {
 							" Java's Bar", 0, JOptionPane.QUESTION_MESSAGE, null, menuOpcoes, menuOpcoes[0]);
 
 //      <!-- Cadastrar --!>
+
 					if (menuSelecionado == 0) {
 						if (bebidaSelecionada == "Refrigerante") {
-							r1.setNome(JOptionPane.showInputDialog(null, "Digite o Nome do " + bebidaSelecionada,
+							r1.setNome(JOptionPane.showInputDialog(null, "Digite o nome do " + bebidaSelecionada,
 									"Java's Bar", JOptionPane.QUESTION_MESSAGE));
-
 							r1.setPreco(Double.parseDouble(
 									JOptionPane.showInputDialog(null, "Digite o preço do " + bebidaSelecionada,
 											"Java's Bar", JOptionPane.QUESTION_MESSAGE)));
@@ -92,7 +92,7 @@ public abstract class Principal {
 									"Java's Bar", JOptionPane.QUESTION_MESSAGE));
 
 						}
-					} // FimCadastrar
+					}
 
 //		<!-- Verificar Preço --!>
 					else if (menuSelecionado == 1) {
@@ -124,21 +124,17 @@ public abstract class Principal {
 							} else {
 								JOptionPane.showMessageDialog(null, "Produto com Preço Normal!", "Java's Bar",
 										JOptionPane.INFORMATION_MESSAGE);
-
 							}
 						}
-					} // FimVerificarPreco
+					}
 
 //		<!-- Mostrar Dados --!>
 					else if (menuSelecionado == 2) {
-						if (menuSelecionado == 2 && r1.getPreco() == null || s1.getPreco() == null
-								|| v1.getPreco() == null) {
-							JOptionPane.showMessageDialog(null, "Não há Produtos Cadastrados", "Java's Bar",
-									JOptionPane.INFORMATION_MESSAGE);
-
-							System.exit(0);
-						}
 						if (bebidaSelecionada == "Refrigerante") {
+							if (r1.getNome() == null || r1.getPreco() == null) {
+								throw new NullPointerException();
+
+							}
 							if (r1.getRetornavel() == true) {
 								retorna = "Sim";
 
@@ -150,15 +146,22 @@ public abstract class Principal {
 									JOptionPane.INFORMATION_MESSAGE);
 
 						} else if (bebidaSelecionada == "Suco") {
+							if (s1.getNome() == null || s1.getPreco() == null) {
+								throw new NullPointerException();
+
+							}
 							JOptionPane.showMessageDialog(null, s1.mostrarBebida(), "Java's Bar",
 									JOptionPane.INFORMATION_MESSAGE);
 
 						} else if (bebidaSelecionada == "Vinho") {
+							if (v1.getNome() == null || v1.getPreco() == null) {
+								throw new NullPointerException();
+
+							}
 							JOptionPane.showMessageDialog(null, v1.mostrarBebida(), "Java's Bar",
 									JOptionPane.INFORMATION_MESSAGE);
-
 						}
-					} // FimMostrarDados
+					}
 
 					// <!-- Trocar Bebida --!>
 					else if (menuSelecionado == 3) {
@@ -169,14 +172,14 @@ public abstract class Principal {
 					}
 				}
 			} catch (NumberFormatException error) {
-				JOptionPane.showMessageDialog(null, "Insira Apenas Números", "Java's Bar",
+				JOptionPane.showMessageDialog(null, "Valores inválidos !!", "Java's Bar",
 						JOptionPane.INFORMATION_MESSAGE);
 			} catch (NullPointerException error) {
-				JOptionPane.showMessageDialog(null, "Não há Produtos Cadastrados", "Java's Bar",
+				JOptionPane.showMessageDialog(null, "Não há produtos cadastrados", "Java's Bar",
 						JOptionPane.INFORMATION_MESSAGE);
 			} catch (Exception Error) {
 				JOptionPane.showMessageDialog(null, "Erro: " + Error, "Java's Bar", JOptionPane.INFORMATION_MESSAGE);
 			}
-		} // While
-	}// Main
-}// Classe
+		}
+	}
+}
