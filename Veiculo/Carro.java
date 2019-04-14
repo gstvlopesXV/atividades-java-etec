@@ -1,8 +1,6 @@
-package ativVeiculo;
+package ativCarro;
 
-public class Carro {
-
-		//atributos
+public class Carro extends Veiculo {
 	public String Modelo, Placa;
 	
 }

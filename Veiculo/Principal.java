@@ -1,76 +1,117 @@
-package ativVeiculo;
+package ativCarro;
 
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Principal {
 	
 	public static void main(String[] args) {
 		
-		int moto;
+		int resp=0;
 		
 		Scanner sc = new Scanner(System.in);
 		Veiculo v1 = new Veiculo();
 		Carro automovel = new Carro();
 		
+		v1.velocidade = 0;
 		v1.veiculo = automovel;
 		v1.estado="desligado";
-		v1.potencia = 37;
-		v1.veiculo.Modelo = "BMW X6";
-		v1.veiculo.Placa = "ABC-1234";
-		v1.velocidade = 0;
-		/* 
-		v1.Acelerar();
-		v1.logAcelerar();
+				
+		String opcoes[] = {"1 - Impala", "2 - Maquina de Mistério", "3 - Relampago Marquinhos"};
+		resp = JOptionPane.showOptionDialog(null, "Escolha um Veiculo", "SIMULADOR DE VEÍCULOS", 0,
+				JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
 		
-		v1.Frear();
-		v1.logFrear();
+		if (resp==0) {
+			v1.veiculo.Modelo = "Impala";
+			v1.veiculo.Placa = "KAZ-2Y5";
+			v1.potencia = 17;
+			v1.velocidadeMaxima = 374;
+	
+		}
+		else if (resp==1) {
+			v1.veiculo.Modelo = "Maquina de Mistério";
+			v1.veiculo.Placa = "SCO-OBY1";
+			v1.potencia = 13;
+			v1.velocidadeMaxima = 286;
+			
+		}
+		else if (resp==2) {
+			v1.veiculo.Modelo = "Relampago Marquinhos";
+			v1.veiculo.Placa = "KAT-IAUU";
+			v1.potencia = 37;
+			v1.velocidadeMaxima = 481;
+			
+		}
+		else{
+		System.exit(0);
 		
-		v1.Radar();
-		*/
-		System.out.println("[SIMULADOR DE TRÁFEGO]\n\n"
-							+ "Digite 0 -> Ligar o Motor\n"
-							+ "Digite 1 -> Desligar o Motor\n"
-							+ "Digite 2 -> Acelerar\n"
-							+ "Digite 3 -> Frear\n"
-							+ "Digite 4 -> Trocar a Marcha\n"
-							+ "Digite 4 -> Disparar Radar\n");
+		}
+		System.out.println("[SIMULADOR DE VEÍCULOS]\n\n"
+							+ "0 -> Ligar Motor\n"
+							+ "1 -> Desligar Motor\n"
+							+ "2 -> Acelerar\n"
+							+ "3 -> Frear\n\n"
+							+ "@ HHora de correr "+v1.veiculo.Modelo.toUpperCase()+" "+v1.veiculo.Placa+" !!\n\n-> "
+							);
 		
 		while (true) {
-			 moto = sc.nextInt();
-			 
-			 
-			 if (moto == 0) { //ligar o motor
-			 System.out.println("você ligou o motor");
-			 v1.estado = "ligado";
-			}
-			 
-			 if (moto == 1) { //ligar o motor
-				 System.out.println("você desligou o motor");
-				 v1.estado = "desligado";
-				}
-		 
-		if (moto == 2 && v1.estado=="ligado"){ //acelerar
+		int exe = sc.nextInt();
+		
+		// <--- MOTOR LIGAR ---> 
+		if (exe == 0 && v1.estado=="desligado") { 
+			System.out.println("Você ligou o motor !");
+			v1.estado = "ligado";
+			
+		}
+		else if (exe == 0 && v1.estado=="ligado"){
+			System.out.println("@ERRO: seu motor já está ligado !");
+			
+		}
+		// <--- MOTOR DESLIGAR ---> 
+		else if (exe == 1 && v1.estado=="ligado") {
+			v1.estado = "desligado";
+			System.out.println("Você desligou o motor !");
+			v1.velocidade = 0;
+			
+		}
+		else if (exe == 1 && v1.estado=="desligado"){
+			System.out.println("@ERRO: seu motor já está desligado, ligue-o primeiro !");
+			
+		}
+		// <--- ACELERAR --->
+		else if (exe == 2 && v1.estado=="ligado"){ 
 			v1.acelerar();
 			v1.logAcelerar();
-		}else if (v1.estado=="desligado") {
-			System.out.println("Ligue o Motor!");
+			v1.cambio();
+			v1.logCambio();
+			
 		}
-	
-		if (moto == 3) { //frear
+		else if (exe == 2 && v1.estado=="desligado") {
+			System.out.println("@ERRO: seu motor está desligado, ligue-o primeiro !");
+			
+		}
+		// <--- FREAR --->
+		else if (exe == 3 && v1.estado == "ligado" && v1.velocidade > 0){ 
 			v1.frear();
 			v1.logFrear();
+			v1.cambio();
+			v1.logCambio();
+			
 		}
-	
-		if (moto == 4) { //marcha
-			v1.marcha();
-			System.out.println("Marcha usada : " + v1.marcha());
-		}
-	
+		else if(exe == 3 && v1.estado=="desligado") {
+			System.out.println("@ERRO: seu motor está desligado, ligue-o primeiro !");
 		
-		if (moto == 5) { //radar
-			v1.radar();
 		}
-	
+		else{
+			System.out.println("@ERRO: comando inválido");
+			
+		}	
 		}//fim while
-	}//fim metodo
+	}//fim metodo	
 }//fim classe
+
+
+//<--- EVENTO RADAR/MULTA --->
+/*if (exe == 5) { 
+v1.radar();			
+}*/
