@@ -1,5 +1,7 @@
 package Controle_Bancario;
 
+import javax.swing.JOptionPane;
+
 public class Menu {
 
 	private int opcao;
@@ -11,7 +13,9 @@ public class Menu {
 	}
 
 	protected void executarMenu() {
-
+		String menuOpcoes[] = { "Consultar Saldo", "Depositar", "Sacar", "Atualizar Saldo", "Voltar" };
+		this.opcao = JOptionPane.showOptionDialog(null, "Escolha uma ação:", " Java's Bank", 0,
+				JOptionPane.QUESTION_MESSAGE, null, menuOpcoes, menuOpcoes[0]);
 	}
 
 	protected void avaliarOpcaoEscolhida() {

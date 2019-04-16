@@ -6,13 +6,14 @@ public class MenuConta extends Menu {
 
 	private ContaCorrente contaCC;
 	private ContaPoupanca contaCP;
+	ContaCorrente cc = new ContaCorrente();
+	ContaPoupanca cp = new ContaPoupanca();
 
 //  <----    Construtor  ---->
 	public MenuConta() {
-		ContaCorrente cc = new ContaCorrente();
 		cc.setSaldo(500);
 		cc.setLimiteEspecial(1000);
-		ContaPoupanca cp = new ContaPoupanca();
+
 		cp.setSaldo(5000);
 		cp.setReajusteMensal(0.01);
 	}
@@ -23,54 +24,56 @@ public class MenuConta extends Menu {
 				JOptionPane.QUESTION_MESSAGE, null, menuOpcoes, menuOpcoes[0]));
 
 		if (getOpcao() == 1) {
-			String menuCC[] = { "Consultar Saldo", " Depositar", "Sacar", "Atualizar Saldo", "Sair" };
-			setOpcao(JOptionPane.showOptionDialog(null, "Escolha o Tipo da Conta", " Java's Bank", 0,
-					JOptionPane.QUESTION_MESSAGE, null, menuCC, menuCC[0]));
+			executarMenu();
 		}
 	}
 
 	protected void avaliarOpcaoEscolhida() {
-		switch (getOpcao()) {
-		case 1:
+		if (getOpcao() == 1) {
 			operarContaCC();
-			break;
-		case 2:
+		} else if (getOpcao() == 2) {
 			operarContaCP();
-			break;
-		case 0:
+		} else if (getOpcao() == 3) {
 			System.exit(0);
-			break;
-		default:
+		} else {
 			System.out.println("Opção inválida!");
-			break;
 		}
 	}
 
 	private void operarContaCC() {
-		String menuOpcoesCC[] = { "Consultar Saldo", "Depositar", "Sacar", "Atualizar Saldo", "Voltar" };
-
-		int menuSelecionadoCC = JOptionPane.showOptionDialog(null, "Escolha uma ação:", " Java's Bar", 0,
-				JOptionPane.QUESTION_MESSAGE, null, menuOpcoesCC, menuOpcoesCC[0]);
-
-		switch (getOpcao()) {
-		case 1:
+		executarMenu();
+		if (getOpcao() == 1) {
 			toString();
-
-			break;
-
-		case 2:
-			Double.parseDouble(((JOptionPane.showInputDialog(null, "Digite o valor do deposito: ", "Java's Bank",
-					JOptionPane.QUESTION_MESSAGE))));
-
-			break;
+		} else if (getOpcao() == 2) { // FALTA AS EXCEÇOES
+			cc.depositar(Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o valor do deposito: ",
+					"Java's Bank", JOptionPane.QUESTION_MESSAGE)));
+		} else if (getOpcao() == 3) {
+			cc.sacar(Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o valor do saque: ", "Java's Bank",
+					JOptionPane.QUESTION_MESSAGE)));
+		} else if (getOpcao() == 4) {
+			cc.atualizarSaldo();
+		} else if (getOpcao() == 0) {
+			setOpcao(-1);
 		}
 	}
 
 	private void operarContaCP() {
-		String menuOpcoesCP[] = { "Consultar Saldo", "Depositar", "Sacar", "Atualizar Saldo", "Voltar" };
-
-		int menuSelecionadoCP = JOptionPane.showOptionDialog(null, "Escolha uma ação:", " Java's Bank", 0,
-				JOptionPane.QUESTION_MESSAGE, null, menuOpcoesCP, menuOpcoesCP[0]);
+		executarMenu();
+		if (getOpcao() == 1) {
+			toString();
+		} else if (getOpcao() == 2) { // FALTA AS EXCEÇOES
+			cp.depositar(Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o valor do deposito: ",
+					"Java's Bank", JOptionPane.QUESTION_MESSAGE)));
+		} else if (getOpcao() == 3) {
+			cp.sacar(Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o valor do saque: ", "Java's Bank",
+					JOptionPane.QUESTION_MESSAGE)));
+		} else if (getOpcao() == 4) {
+			cp.setReajusteMensal((Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o valor do saque: ",
+					"Java's Bank", JOptionPane.QUESTION_MESSAGE))));
+			cp.atualizarSaldo();
+		} else if (getOpcao() == 0) {
+			setOpcao(-1);
+		}
 	}
 
 	public ContaCorrente getContaCC() {
