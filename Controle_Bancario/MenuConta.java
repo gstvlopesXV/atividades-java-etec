@@ -31,48 +31,65 @@ public class MenuConta extends Menu {
 	protected void avaliarOpcaoEscolhida() {
 		if (getOpcao() == 1) {
 			operarContaCC();
+
 		} else if (getOpcao() == 2) {
 			operarContaCP();
+
 		} else if (getOpcao() == 3) {
 			System.exit(0);
+
 		} else {
 			System.out.println("Opção inválida!");
+
 		}
 	}
 
 	private void operarContaCC() {
 		executarMenu();
+
 		if (getOpcao() == 1) {
-			toString();
+			cc.toString();
+
 		} else if (getOpcao() == 2) { // FALTA AS EXCEÇOES
 			cc.depositar(Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o valor do deposito: ",
 					"Java's Bank", JOptionPane.QUESTION_MESSAGE)));
+
 		} else if (getOpcao() == 3) {
 			cc.sacar(Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o valor do saque: ", "Java's Bank",
 					JOptionPane.QUESTION_MESSAGE)));
+
 		} else if (getOpcao() == 4) {
 			cc.atualizarSaldo();
+
 		} else if (getOpcao() == 0) {
 			setOpcao(-1);
+		} else {
+			System.out.println("Opção inválida!");
 		}
 	}
 
 	private void operarContaCP() {
 		executarMenu();
+
 		if (getOpcao() == 1) {
-			toString();
+			cp.toString();
+
 		} else if (getOpcao() == 2) { // FALTA AS EXCEÇOES
 			cp.depositar(Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o valor do deposito: ",
 					"Java's Bank", JOptionPane.QUESTION_MESSAGE)));
+
 		} else if (getOpcao() == 3) {
 			cp.sacar(Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o valor do saque: ", "Java's Bank",
 					JOptionPane.QUESTION_MESSAGE)));
+
 		} else if (getOpcao() == 4) {
 			cp.setReajusteMensal((Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o valor do saque: ",
 					"Java's Bank", JOptionPane.QUESTION_MESSAGE))));
+
 			cp.atualizarSaldo();
 		} else if (getOpcao() == 0) {
 			setOpcao(-1);
+
 		}
 	}
 
