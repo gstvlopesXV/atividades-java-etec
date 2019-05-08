@@ -8,7 +8,7 @@ public class ContaCorrente extends Conta {
 
 	}
 
-	public void sacar(double valor){
+	public void sacar(double valor) {
 
 		if (valor < limiteEspecial) {
 			throw new NullPointerException();
@@ -19,7 +19,7 @@ public class ContaCorrente extends Conta {
 	}
 
 	public String toString() {
-		return "Depositou: x \n Sacou: x";
+		return "ContaCorrente toString()";
 	}
 
 	public double getLimiteEspecial() {

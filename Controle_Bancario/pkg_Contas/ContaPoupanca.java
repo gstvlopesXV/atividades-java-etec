@@ -16,7 +16,7 @@ public class ContaPoupanca extends Conta {
 	}
 
 	public String toString() {
-		return "Reajuste Mensal: X ";
+		return "ContaPoupanca toString()";
 
 	}
 
