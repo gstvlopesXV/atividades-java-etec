@@ -74,7 +74,7 @@ public class ImageChanger extends JFrame {
 	}
 	public static void main(String[] args) {
 		new ImageChanger();
-	//Java How To: JFileChooser
+	//JFileChooser bttnInserirImg bttnTrocarImg
 	//https://www.youtube.com/watch?v=9VrtranTJnc
 	}
 }
