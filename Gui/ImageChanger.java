@@ -7,9 +7,12 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -17,17 +20,26 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 public class ImageChanger extends JFrame {
+	String local = "Imagens/"; 
 
 	public ImageChanger() {
 
-		super("JAVA'S IMAGE CHANGER");
-		System.out.println("====================== LOG JAVA'S IMAGE CHANGER ======================\n");
-			  
+		super("JAVA'S IMAGE SHOWCASE");
+		System.out.println("====================== LOG JAVA'S IMAGE SHOWCASE ======================\n");
+		
+		ImageIcon icon = new ImageIcon(getClass().getResource("Imagens/interrogacao.png"));
+		JLabel image = new JLabel(icon);
+		JLabel image1 = new JLabel(icon);
+		JLabel image2 = new JLabel(icon);
+		JLabel image3 = new JLabel(icon);
+		JLabel image4 = new JLabel(icon);
+		JLabel image5 = new JLabel(icon);
+		
 		Container containerImg = getContentPane();
 		Container labelButtons = new JPanel();
 
+		
 		JButton bttnInserirImg = new JButton("Inserir Imagem");
-		JButton bttnTrocarImg = new JButton("Trocar Imagem");
 		JButton bttnImage1 = new JButton("1");
 		JButton bttnImage2 = new JButton("2");
 		JButton bttnImage3 = new JButton("3");
@@ -42,20 +54,17 @@ public class ImageChanger extends JFrame {
 		labelButtons.add(bttnImage3);
 		labelButtons.add(bttnImage4);
 		labelButtons.add(bttnImage5);
-		labelButtons.add(bttnTrocarImg);
+		labelButtons.add(bttnInserirImg);
 
-		containerImg.add(BorderLayout.CENTER, bttnInserirImg);
+		containerImg.add(BorderLayout.CENTER, image);
 		containerImg.add(BorderLayout.SOUTH, labelButtons);
 
-		containerImg.setBackground(Color.BLACK);
-
+		containerImg.setBackground(Color.WHITE);
+		
 		labelButtons.setBackground(Color.GRAY);
 
-		bttnTrocarImg.setBackground(Color.RED);
-		bttnTrocarImg.setForeground(Color.WHITE);
-
-		bttnInserirImg.setBackground(Color.WHITE);
-		bttnInserirImg.setForeground(Color.BLACK);
+		bttnInserirImg.setBackground(Color.RED);
+		bttnInserirImg.setForeground(Color.WHITE);
 
 		bttnImage1.setBackground(Color.BLACK);
 		bttnImage1.setForeground(Color.WHITE);
@@ -78,26 +87,8 @@ public class ImageChanger extends JFrame {
 		setMinimumSize(new Dimension(500, 500));
 
 		setVisible(true);
-
+		
 		bttnInserirImg.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("[Button] 'Inserir Imagem' foi clicado !");
-				
-				JFileChooser chooser = new JFileChooser();
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagens JPG & PNG", "jpg", "png");
-
-				chooser.setFileFilter(filter);
-				System.out.println("[JFileChooser] 'Inserir Imagem' foi aberto!");
-				int returnVal = chooser.showOpenDialog(null);
-				
-				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					System.out.println("[JFileChooser] PNG/JPG importado com sucesso! ARQUIVO: " + chooser.getSelectedFile().getName());
-				}
-
-			}
-		});
-
-		bttnTrocarImg.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[Button] 'Trocar Imagem' foi clicado !");
 				
@@ -105,16 +96,60 @@ public class ImageChanger extends JFrame {
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagens JPG & PNG", "jpg", "png");
 
 				chooser.setFileFilter(filter);
-				System.out.println("[JFileChooser] 'Trocar Imagem' foi aberto!");
-				int returnVal = chooser.showOpenDialog(null);
 				
-				if (returnVal == JFileChooser.APPROVE_OPTION) {
+				System.out.println("[JFileChooser] 'Trocar Imagem' foi aberto!");
+				
+				int returnVal = chooser.showOpenDialog(null);
+			
+				if (returnVal == JFileChooser.APPROVE_OPTION){
 					System.out.println("[JFileChooser] PNG/JPG importado com sucesso! ARQUIVO: "+ chooser.getSelectedFile().getName());
+					
 				}
 			}
 		});
+		
+		bttnImage1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("BT 1");
+				image1.setIcon(new ImageIcon(getClass().getResource("Imagens/img1.png")));
+			}
+		});
+
+		bttnImage2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("BT 2");
+				image2.setIcon(new ImageIcon(getClass().getResource("Imagens/img2.png")));
+			}
+		});
+
+		bttnImage3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("BT 3");
+				image3.setIcon(new ImageIcon(getClass().getResource("Imagens/img3.png")));
+			}
+		});
+
+		bttnImage4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("BT 4");
+				image4.setIcon(new ImageIcon(getClass().getResource("Imagens/img4.png")));
+			}
+		});
+
+		bttnImage5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("BT 5");
+				image5.setIcon(new ImageIcon(getClass().getResource("Imagens/img5.png")));
+			}
+		});
+
+
+		
 	
+
 	}
+	
+	
 	public static void main(String[] args) {
 		new ImageChanger();
 
