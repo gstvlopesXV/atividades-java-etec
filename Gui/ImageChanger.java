@@ -5,8 +5,10 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,13 +16,13 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.Image;
+
 
 
 public class ImageChanger extends JFrame {
-	String local = "Imagens/"; 
+	 
 
 	public ImageChanger() {
 
@@ -92,21 +94,29 @@ public class ImageChanger extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("[Button] 'Trocar Imagem' foi clicado !");
 				
-				JFileChooser chooser = new JFileChooser();
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagens JPG & PNG", "jpg", "png");
-
-				chooser.setFileFilter(filter);
+				JFileChooser file = new JFileChooser();
+				file.setCurrentDirectory(new File(System.getProperty("user.home")));
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images","jpg", "png");
+				file.addChoosableFileFilter(filter);
 				
 				System.out.println("[JFileChooser] 'Trocar Imagem' foi aberto!");
-				
-				int returnVal = chooser.showOpenDialog(null);
+				int result = file.showSaveDialog(null);
 			
-				if (returnVal == JFileChooser.APPROVE_OPTION){
-					System.out.println("[JFileChooser] PNG/JPG importado com sucesso! ARQUIVO: "+ chooser.getSelectedFile().getName());
-					
-				}
-			}
-		});
+				if(result == JFileChooser.APPROVE_OPTION){
+		        String path = file.getSelectedFile().toString();
+		              image.setIcon(new ImageIcon(path));
+		           
+		              
+		              
+		      }
+		           
+
+
+		          else if(result == JFileChooser.CANCEL_OPTION){
+		              System.out.println("No File Select");
+		          }
+		        }
+		    });
 		
 		bttnImage1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
