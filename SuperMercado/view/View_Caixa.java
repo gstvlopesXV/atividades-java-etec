@@ -1,179 +1,180 @@
 package view;
 
-	import java.awt.Container;
-	import java.awt.event.ActionEvent;
-	import java.awt.event.ActionListener;
-	import javax.swing.JButton;
-	import javax.swing.JFrame;
-	import javax.swing.JLabel;
-	import javax.swing.JOptionPane;
-	import javax.swing.JScrollPane;
-	import javax.swing.JTable;
-	import javax.swing.JTextField;
-	import javax.swing.SwingConstants;
-	import javax.swing.table.DefaultTableCellRenderer;
-	import javax.swing.table.DefaultTableModel;
-	
-	public class View_Caixa extends JFrame{
-		
-		JScrollPane scrollPane;
-		JTable tabela;
-		Container container;
-		JTextField txtCodigo, txtDescricao, txtPreco;
-		JLabel lblCodigo, lblDescricao, lblPreco;
-		JButton btnCadastrar, btnRemover, btnSair;
-		DefaultTableModel dtm;
-		
-		public View_Caixa() {
-		super ("Mercado Java's - Caixa");
-		setSize(500,400);
-		setLocationRelativeTo(null);
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
+
+public class View_Caixa extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField CodigoField;
+	private JTextField DescricaoField;
+	private JTextField ValorField;
+	private JTextField QuantidadeField;
+	private JTable table;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					View_Caixa frame = new View_Caixa();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public View_Caixa() {
+		setResizable(false);
+		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 587, 521);
+		contentPane = new JPanel();
+		contentPane.setForeground(new Color(105, 105, 105));
+		contentPane.setBackground(new Color(245, 245, 245));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		container = getContentPane();
-		container.setLayout(null);
-			
-		//***************codigo*****************8
-		lblCodigo =  new JLabel("Código:");
-		lblCodigo.setBounds(5, 5, 80, 20);
+		JLabel lblCodigoProduto = new JLabel("C\u00F3digo");
+		lblCodigoProduto.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblCodigoProduto.setBounds(10, 62, 85, 14);
+		contentPane.add(lblCodigoProduto);
 		
-		txtCodigo = new JTextField();
-		txtCodigo.setBounds(65, 5, 35, 20);
-			
-		//*************Descricao***************
-		lblDescricao = new JLabel("Descição:");
-		lblDescricao.setBounds(5, 35, 80, 20);
+		CodigoField = new JTextField();
+		CodigoField.setFont(new Font("Arial", Font.PLAIN, 16));
+		CodigoField.setBackground(new Color(220, 220, 220));
+		CodigoField.setBounds(10, 76, 138, 20);
+		contentPane.add(CodigoField);
+		CodigoField.setColumns(10);
 		
-		txtDescricao = new JTextField();
-		txtDescricao.setBounds(65, 35, 360, 20);
+		JLabel lblDescricaoProduto = new JLabel("Descri\u00E7\u00E3o");
+		lblDescricaoProduto.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblDescricaoProduto.setBounds(10, 107, 62, 14);
+		contentPane.add(lblDescricaoProduto);
 		
-		//************preço*************]
+		DescricaoField = new JTextField();
+		DescricaoField.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		DescricaoField.setBounds(10, 123, 559, 20);
+		contentPane.add(DescricaoField);
+		DescricaoField.setColumns(10);
 		
-		lblPreco = new JLabel("Preço:");
-		lblPreco.setBounds(5, 65, 80, 20);
+		ValorField = new JTextField();
+		ValorField.setFont(new Font("Arial", Font.PLAIN, 16));
+		ValorField.setBounds(158, 76, 135, 20);
+		contentPane.add(ValorField);
+		ValorField.setColumns(10);
 		
-		txtPreco = new JTextField();
-		txtPreco.setBounds(65, 65, 80, 20);
+		JLabel lblValor = new JLabel("Valor");
+		lblValor.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblValor.setBounds(158, 63, 46, 14);
+		contentPane.add(lblValor);
 		
-		//---------------------TABELA---------------------//
+		JLabel lblQuantidade = new JLabel("Quantidade");
+		lblQuantidade.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblQuantidade.setBounds(306, 63, 85, 14);
+		contentPane.add(lblQuantidade);
 		
-		dtm = new DefaultTableModel(new String[] {"Código", "Descrição","Preço"},0)
-		{
-			public boolean isCellEditable(int row,int col){
-				return false;
-			}};
-			
-		tabela = new JTable(dtm);
+		QuantidadeField = new JTextField();
+		QuantidadeField.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		QuantidadeField.setBounds(306, 76, 142, 20);
+		contentPane.add(QuantidadeField);
+		QuantidadeField.setColumns(10);
 		
-		//************MOVIMENTAÇÃO**************	
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		panel.setBounds(0, 0, 581, 56);
+		contentPane.add(panel);
+		panel.setLayout(null);
 		
-		tabela.getTableHeader().setReorderingAllowed(false);
+		JLabel lblJavas = new JLabel("JAVA'S");
+		lblJavas.setForeground(new Color(255, 51, 51));
+		lblJavas.setBounds(147, 14, 90, 32);
+		lblJavas.setFont(new Font("Tahoma", Font.BOLD, 26));
+		panel.add(lblJavas);
 		
+		JLabel lblSupermarket = new JLabel("SUPERMARKET");
+		lblSupermarket.setForeground(new Color(60, 179, 113));
+		lblSupermarket.setBounds(247, 12, 236, 35);
+		lblSupermarket.setFont(new Font("Verdana", Font.BOLD, 26));
+		panel.add(lblSupermarket);
 		
-		//************TAMANHO/DIMENSIONAMENTO DA COLUNAS**************	
+		JLabel label = new JLabel("12:03");
+		label.setForeground(Color.DARK_GRAY);
+		label.setBackground(new Color(192, 192, 192));
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(new Font("Arial Black", Font.BOLD, 30));
+		label.setBounds(452, 62, 117, 49);
+		contentPane.add(label);
 		
-		tabela.getColumnModel().getColumn(0).setPreferredWidth(60);
-		tabela.getColumnModel().getColumn(0).setResizable(false);
+		table = new JTable();
+		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		table.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"C\u00F3digo", "Descri\u00E7\u00E3o", "Quantidade", "Valor"},
+			},
+			new String[] {
+				"A", "B", "C", "D"
+			}
+		));
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.setBackground(Color.WHITE);
+		table.setBounds(10, 188, 559, 254);
+		contentPane.add(table);
 		
-		tabela.getColumnModel().getColumn(1).setPreferredWidth(350);
-		tabela.getColumnModel().getColumn(1).setResizable(false);
+		JLabel lblValorTotal = new JLabel("VALOR TOTAL:");
+		lblValorTotal.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblValorTotal.setBounds(10, 447, 142, 35);
+		contentPane.add(lblValorTotal);
 		
-		tabela.getColumnModel().getColumn(2).setPreferredWidth(80);
-		tabela.getColumnModel().getColumn(2).setResizable(false);
-				
-		tabela.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);  // não permite redimensionamento automático
-				
-		//************ALINHAMENTO**************
+		JLabel lblR = new JLabel("R$200,00");
+		lblR.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblR.setBounds(143, 453, 107, 24);
+		contentPane.add(lblR);
 		
-		DefaultTableCellRenderer alinhaDireita = new DefaultTableCellRenderer();
-		alinhaDireita.setHorizontalAlignment(SwingConstants.RIGHT);
-			
-		scrollPane = new JScrollPane(tabela);
-		scrollPane.setBounds(0, 150, 480, 105);
-			
-		//****************botões CADASTRAR*****************
+		JButton btnNewButton = new JButton("Adicionar");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setBackground(new Color(64, 64, 64));
+		btnNewButton.setBounds(372, 154, 98, 23);
+		contentPane.add(btnNewButton);
 		
-		btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.setBounds(10, 300, 130, 30);
-		btnCadastrar.setToolTipText("Adiciona Clientes");
+		JButton btnRemover = new JButton("Remover");
+		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnRemover.setForeground(Color.WHITE);
+		btnRemover.setBackground(Color.DARK_GRAY);
+		btnRemover.setBounds(480, 154, 89, 23);
+		contentPane.add(btnRemover);
 		
-		//****************botões REMOVER*****************
-		
-		btnRemover = new JButton("Remover");
-		btnRemover.setBounds(150, 300, 130, 30);
-		btnRemover.setToolTipText("Remove Clientes");
-		
-		//****************botões SAIR*****************
-
-		btnSair = new JButton("Sair");
-		btnSair.setBounds(350, 300, 130, 30);
-		btnSair.setToolTipText("Sair da Aplicação");
-		
-		
-		add(lblCodigo);
-		add(txtCodigo);
-		
-		add(lblDescricao);
-		add(txtDescricao);
-		
-		add(lblPreco);
-		add(txtPreco);
-		
-		add(scrollPane);
-
-		add(btnCadastrar);
-		add(btnRemover);
-		add(btnSair);
-		
-		eventos();
-		
-		}
-		
-		private void eventos() {
-			
-			btnCadastrar.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					if (txtCodigo.getText().equals("") || txtDescricao.getText().equals("") || txtPreco.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
-						//return;
-					}
-					if (txtCodigo.getText().length() >= 1) {
-					DefaultTableModel dtm = (DefaultTableModel) tabela.getModel();
-					dtm.addRow(new Object[] {txtCodigo.getText(), txtDescricao.getText(), " R$ " + txtPreco.getText()+",00"  });
-			
-					txtCodigo.setText("");
-					txtDescricao.setText(""); 
-					txtPreco.setText(""); 
-					}
-				}
-			});
-			
-			btnRemover.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					try {
-					int[] linhas = tabela.getSelectedRows();
-									
-					System.out.println("Apagou a linha " + linhas[0]);
-					
-					DefaultTableModel dtm = (DefaultTableModel) tabela.getModel();
-					
-					for (int i = (linhas.length - 1);i>=0;--i) {
-						dtm.removeRow(linhas[i]);
-					}
-					}catch(java.lang.ArrayIndexOutOfBoundsException error) {
-						JOptionPane.showMessageDialog(null, "Não Existe Produto para Remover");
-					}
-				}
-			});
-			btnSair.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null, "Encerrando Aplicação");
-					System.exit(0);
-				}
-			});
-		
-		}
-	
+		JButton btnConfirmarCompra = new JButton("CONFIRMAR COMPRA");
+		btnConfirmarCompra.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnConfirmarCompra.setBackground(new Color(60, 179, 113));
+		btnConfirmarCompra.setForeground(Color.WHITE);
+		btnConfirmarCompra.setBounds(398, 453, 171, 23);
+		contentPane.add(btnConfirmarCompra);
+	}
 }

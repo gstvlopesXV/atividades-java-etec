@@ -8,27 +8,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import view.View_Caixa;
+import view.View_Caixa_Funcional;
 
 public class Caixa_CRUD {
 	
-	public void criar(Connection con, View_Caixa caixa) throws SQLException{
+	public void criar(Connection con, View_Caixa_Funcional caixa) throws SQLException{
 		String sql = "INSERT INTO CONTA VALUES (?,?,?)";
 		try (PreparedStatement stm = con.prepareStatement(sql)){
-		stm.setInt(1, caixa.numero);
+		stm.setInt(1, caixa.cod_compra);
 		stm.setString(2, caixa.cliente);
 		stm.setDouble(3, caixa.saldo);
 		stm.executeUpdate();
 		}
 	}
 	
-	public List<View_Caixa> ler(Connection con) throws SQLException{
-		List<View_Caixa> lista = new ArrayList<>();
+	public List<View_Caixa_Funcional> ler(Connection con) throws SQLException{
+		List<View_Caixa_Funcional> lista = new ArrayList<>();
 		String sql = "SELECT NUMERO, CLIENTE, SALDO FROM CONTA";
 		try (PreparedStatement stm = con.prepareStatement(sql);
 			ResultSet rs = stm.executeQuery()){
 			while(rs.next()){
-				lista.add(new View_Caixa(rs.getInt("NUMERO"), rs.getString(2), rs.getDouble("SALDO")));
+				lista.add(new View_Caixa_Funcional(rs.getInt("NUMERO"), rs.getString(2), rs.getDouble("SALDO")));
 			}
 		}
 		return lista;
