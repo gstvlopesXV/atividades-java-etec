@@ -1,4 +1,4 @@
-package milton;
+package pkg_estruturado;
 
 import java.util.Scanner;
 
@@ -14,7 +14,7 @@ public class Exer_06 {
 		
 		Scanner ler = new Scanner(System.in);
 		
-		System.out.println("Preço do piso:");
+		System.out.println("PreÃ§o do piso:");
 		valorPiso = ler.nextDouble();
 		System.out.println("Largura do Comodo:");
 		larguraComodo = ler.nextDouble();
