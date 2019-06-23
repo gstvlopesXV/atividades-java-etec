@@ -1,4 +1,4 @@
-package milton;
+package pkg_estruturado;
 
 import java.text.DecimalFormat;
 
@@ -21,10 +21,10 @@ public class Exer_02 {
 			ano = (ano + 1);
 		
 			pessoaMaria = pessoaMaria + cresceMaria;
-			System.out.println(ano+"° Ano, "+"crescimento de Maria:\n"+df.format(pessoaMaria)+"\n");
+			System.out.println(ano+"Â° Ano, "+"crescimento de Maria:\n"+df.format(pessoaMaria)+"\n");
 		
 			pessoaJoao = pessoaJoao + cresceJoao;
-			System.out.println(ano+"° Ano, "+"crescimento de João:\n"+df.format(pessoaJoao)+"\n");
+			System.out.println(ano+"Â° Ano, "+"crescimento de JoÃ£o:\n"+df.format(pessoaJoao)+"\n");
 		
 		}	
 	}		
