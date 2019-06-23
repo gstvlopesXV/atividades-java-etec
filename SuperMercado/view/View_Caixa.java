@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Font;
@@ -18,15 +19,17 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class View_Caixa extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField CodigoField;
-	private JTextField DescricaoField;
-	private JTextField ValorField;
-	private JTextField QuantidadeField;
-	private JTable table;
+	private JTextField codigoField;
+	private JTextField descricaoField;
+	private JTextField precoField;
+	private JTextField quantidadeField;
+	private JTable tabelaCaixa;
 
 	/**
 	 * Launch the application.
@@ -64,29 +67,31 @@ public class View_Caixa extends JFrame {
 		lblCodigoProduto.setBounds(10, 62, 85, 14);
 		contentPane.add(lblCodigoProduto);
 		
-		CodigoField = new JTextField();
-		CodigoField.setFont(new Font("Arial", Font.PLAIN, 16));
-		CodigoField.setBackground(new Color(220, 220, 220));
-		CodigoField.setBounds(10, 76, 138, 20);
-		contentPane.add(CodigoField);
-		CodigoField.setColumns(10);
+		codigoField = new JTextField();
+		codigoField.setFont(new Font("Arial", Font.PLAIN, 16));
+		codigoField.setBackground(new Color(255, 255, 240));
+		codigoField.setBounds(10, 76, 138, 20);
+		contentPane.add(codigoField);
+		codigoField.setColumns(10);
 		
 		JLabel lblDescricaoProduto = new JLabel("Descri\u00E7\u00E3o");
 		lblDescricaoProduto.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblDescricaoProduto.setBounds(10, 107, 62, 14);
 		contentPane.add(lblDescricaoProduto);
 		
-		DescricaoField = new JTextField();
-		DescricaoField.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		DescricaoField.setBounds(10, 123, 559, 20);
-		contentPane.add(DescricaoField);
-		DescricaoField.setColumns(10);
+		descricaoField = new JTextField();
+		descricaoField.setBackground(new Color(255, 255, 240));
+		descricaoField.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		descricaoField.setBounds(10, 123, 559, 20);
+		contentPane.add(descricaoField);
+		descricaoField.setColumns(10);
 		
-		ValorField = new JTextField();
-		ValorField.setFont(new Font("Arial", Font.PLAIN, 16));
-		ValorField.setBounds(158, 76, 135, 20);
-		contentPane.add(ValorField);
-		ValorField.setColumns(10);
+		precoField = new JTextField();
+		precoField.setBackground(new Color(255, 255, 240));
+		precoField.setFont(new Font("Arial", Font.PLAIN, 16));
+		precoField.setBounds(158, 76, 135, 20);
+		contentPane.add(precoField);
+		precoField.setColumns(10);
 		
 		JLabel lblValor = new JLabel("Valor");
 		lblValor.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -98,11 +103,13 @@ public class View_Caixa extends JFrame {
 		lblQuantidade.setBounds(306, 63, 85, 14);
 		contentPane.add(lblQuantidade);
 		
-		QuantidadeField = new JTextField();
-		QuantidadeField.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		QuantidadeField.setBounds(306, 76, 142, 20);
-		contentPane.add(QuantidadeField);
-		QuantidadeField.setColumns(10);
+		quantidadeField = new JTextField();
+		quantidadeField.setBackground(new Color(255, 255, 240));
+		quantidadeField.setForeground(new Color(0, 0, 0));
+		quantidadeField.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		quantidadeField.setBounds(306, 76, 142, 20);
+		contentPane.add(quantidadeField);
+		quantidadeField.setColumns(10);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
@@ -130,10 +137,10 @@ public class View_Caixa extends JFrame {
 		label.setBounds(452, 62, 117, 49);
 		contentPane.add(label);
 		
-		table = new JTable();
-		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		table.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
-		table.setModel(new DefaultTableModel(
+		tabelaCaixa = new JTable();
+		tabelaCaixa.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		tabelaCaixa.setFont(new Font("Arial", Font.PLAIN, 14));
+		tabelaCaixa.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"C\u00F3digo", "Descri\u00E7\u00E3o", "Quantidade", "Valor"},
 			},
@@ -141,10 +148,10 @@ public class View_Caixa extends JFrame {
 				"A", "B", "C", "D"
 			}
 		));
-		table.getColumnModel().getColumn(0).setResizable(false);
-		table.setBackground(Color.WHITE);
-		table.setBounds(10, 188, 559, 254);
-		contentPane.add(table);
+		tabelaCaixa.getColumnModel().getColumn(0).setResizable(false);
+		tabelaCaixa.setBackground(Color.WHITE);
+		tabelaCaixa.setBounds(10, 188, 559, 254);
+		contentPane.add(tabelaCaixa);
 		
 		JLabel lblValorTotal = new JLabel("VALOR TOTAL:");
 		lblValorTotal.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -157,6 +164,31 @@ public class View_Caixa extends JFrame {
 		contentPane.add(lblR);
 		
 		JButton btnNewButton = new JButton("Adicionar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (codigoField.getText().equals("") || 
+					descricaoField.getText().equals("") || 
+					quantidadeField.getText().equals("") || 
+					precoField.getText().equals(""))
+				{
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+					//return;
+				}
+				if (codigoField.getText().length() >= 1) {
+				DefaultTableModel dtm = (DefaultTableModel) tabelaCaixa.getModel();
+				dtm.addRow(new Object[] {
+						codigoField.getText(), 
+						descricaoField.getText(), 
+						quantidadeField.getText(), 
+						" R$ " + precoField.getText()  });
+		
+				codigoField.setText("");
+				descricaoField.setText("");
+				quantidadeField.setText("");
+				precoField.setText(""); 
+				}
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(new Color(64, 64, 64));
@@ -164,13 +196,31 @@ public class View_Caixa extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnRemover = new JButton("Remover");
+		btnRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+				int[] linhas = tabelaCaixa.getSelectedRows();
+								
+				System.out.println("Apagou a linha " + linhas[0]);
+				
+				DefaultTableModel dtm = (DefaultTableModel) tabelaCaixa.getModel();
+				
+				for (int i = (linhas.length - 1);i>=0;--i) {
+					dtm.removeRow(linhas[i]);
+				}
+				}catch(java.lang.ArrayIndexOutOfBoundsException error) {
+					JOptionPane.showMessageDialog(null, "Não Existe Produto para Remover");
+				}
+			}
+			
+		});
 		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnRemover.setForeground(Color.WHITE);
 		btnRemover.setBackground(Color.DARK_GRAY);
 		btnRemover.setBounds(480, 154, 89, 23);
 		contentPane.add(btnRemover);
 		
-		JButton btnConfirmarCompra = new JButton("CONFIRMAR COMPRA");
+		JButton btnConfirmarCompra = new JButton("EFETUAR COMPRA");
 		btnConfirmarCompra.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnConfirmarCompra.setBackground(new Color(60, 179, 113));
 		btnConfirmarCompra.setForeground(Color.WHITE);

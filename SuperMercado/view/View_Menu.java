@@ -66,9 +66,11 @@ public class View_Menu extends JFrame {
 		JButton btnNewButton_1 = new JButton("REGISTRO");
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 32));
 		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setBackground(new Color(128, 128, 128));
+		btnNewButton_1.setBackground(new Color(165, 42, 42));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				View_ComprasEfetuadas janelaComprasEfetuadas = new View_ComprasEfetuadas();			
+				janelaComprasEfetuadas.setVisible(true);
 			}
 		});
 		btnNewButton_1.setBounds(393, 78, 320, 372);

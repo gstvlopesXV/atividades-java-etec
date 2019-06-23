@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
+import javax.swing.UIManager;
 
 public class View_Login extends JFrame {
 
@@ -78,7 +79,7 @@ public class View_Login extends JFrame {
 		
 		JButton btnLogin = new JButton("Entrar");
 		btnLogin.setFont(new Font("Arial", Font.BOLD, 12));
-		btnLogin.setBackground(new Color(255, 99, 71));
+		btnLogin.setBackground(Color.DARK_GRAY);
 		btnLogin.setForeground(Color.WHITE);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -93,7 +94,7 @@ public class View_Login extends JFrame {
 				
 					//return;
 				}else {
-					JOptionPane.showMessageDialog(null, "Usuário ou Senha Incorretos");
+					JOptionPane.showMessageDialog(null, "UsuÃ¡rio ou Senha Incorretos");
 				}
 			}
 		});
