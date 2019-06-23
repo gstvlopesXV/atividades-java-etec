@@ -1,4 +1,4 @@
-package milton;
+package pkg_estruturado;
 
 import java.text.DecimalFormat;
 
@@ -24,10 +24,10 @@ public class Exer_03 {
 			ano = (ano + 1);
 		
 			paisA = paisA + taxaNatalidadeA;
-			System.out.println(ano+"° Ano, "+"Popução País A:\n"+df.format(paisA)+"\n");
+			System.out.println(ano+"Â° Ano, "+"PopuÃ§Ã£o PaÃ­s A:\n"+df.format(paisA)+"\n");
 		
 			paisB = paisB + taxaNatalidadeB;
-			System.out.println(ano+"° Ano, "+"Popução País B:\n"+df.format(paisB)+"\n");
+			System.out.println(ano+"Â° Ano, "+"PopuÃ§Ã£o PaÃ­s B:\n"+df.format(paisB)+"\n");
 		
 		}	
 	}		
