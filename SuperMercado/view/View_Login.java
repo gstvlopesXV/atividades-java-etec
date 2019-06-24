@@ -1,25 +1,25 @@
 package view;
-
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
+
+import db.DB_Login;
+
 import java.awt.Color;
-import java.awt.FlowLayout;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
-import javax.swing.UIManager;
 
 public class View_Login extends JFrame {
 
@@ -79,43 +79,34 @@ public class View_Login extends JFrame {
 		
 		JButton btnLogin = new JButton("Entrar");
 		btnLogin.setFont(new Font("Arial", Font.BOLD, 12));
-		btnLogin.setBackground(Color.DARK_GRAY);
+		btnLogin.setBackground(new Color(255, 51, 51));
 		btnLogin.setForeground(Color.WHITE);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (usernameField.getText().equals("admin") || passwordField.getText().equals("admin")) {
-					JOptionPane.showMessageDialog(null, "Bem-Vindo!");
-					View_Menu janelaMenu = new View_Menu();
-					janelaMenu.setVisible(true);
-					if (janelaMenu.isVisible()==(true)){
-					View_Login janelaLogin = new View_Login();
-					janelaLogin.setVisible(false);
-					}
+				DB_Login pro = new DB_Login();
+				pro.createConnection();
 				
-					//return;
-				}else {
-					JOptionPane.showMessageDialog(null, "UsuÃ¡rio ou Senha Incorretos");
-				}
 			}
 		});
 		btnLogin.setBounds(502, 230, 92, 31);
 		contentPane.add(btnLogin);
 		
-		usernameField = new JTextField();
-		usernameField.setBackground(new Color(245, 245, 245));
-		usernameField.setFont(new Font("Arial Black", Font.PLAIN, 14));
-		usernameField.setHorizontalAlignment(SwingConstants.LEFT);
-		usernameField.setBounds(327, 79, 267, 31);
-		contentPane.add(usernameField);
-		usernameField.setColumns(10);
+		setUsernameField(new JTextField());
+		getUsernameField().setBackground(new Color(245, 245, 245));
+		getUsernameField().setFont(new Font("Arial Black", Font.PLAIN, 14));
+		getUsernameField().setHorizontalAlignment(SwingConstants.LEFT);
+		getUsernameField().setBounds(327, 79, 267, 31);
+		contentPane.add(getUsernameField());
+		getUsernameField().setColumns(10);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBackground(new Color(245, 245, 245));
-		passwordField.setFont(new Font("Arial Black", Font.PLAIN, 14));
-		passwordField.setBounds(327, 157, 267, 31);
+		setPasswordField(new JPasswordField());
+		getPasswordField().setEchoChar('*');
+		getPasswordField().setBackground(new Color(245, 245, 245));
+		getPasswordField().setFont(new Font("Arial Black", Font.PLAIN, 14));
+		getPasswordField().setBounds(327, 157, 267, 31);
 	
-		contentPane.add(passwordField);
-		passwordField.setColumns(10);
+		contentPane.add(getPasswordField());
+		getPasswordField().setColumns(10);
 		
 		
 		JLabel lblUsuario = new JLabel("Usu\u00E1rio");
@@ -134,10 +125,10 @@ public class View_Login extends JFrame {
 		checkBoxVisualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(checkBoxVisualizar.isSelected()) {
-					passwordField.setEchoChar((char)0);
+					getPasswordField().setEchoChar((char)0);
 					
 				}else 
-					passwordField.setEchoChar('●');
+					getPasswordField().setEchoChar('*');
 				{
 				
 				}
@@ -148,5 +139,21 @@ public class View_Login extends JFrame {
 		checkBoxVisualizar.setBackground(new Color(46, 139, 87));
 		checkBoxVisualizar.setBounds(327, 197, 86, 23);
 		contentPane.add(checkBoxVisualizar);
+	}
+
+	public JTextField getUsernameField() {
+		return usernameField;
+	}
+
+	public void setUsernameField(JTextField usernameField) {
+		this.usernameField = usernameField;
+	}
+
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
+
+	public void setPasswordField(JPasswordField passwordField) {
+		this.passwordField = passwordField;
 	}
 }

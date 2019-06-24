@@ -191,7 +191,7 @@ public class View_Caixa extends JFrame {
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.setBackground(new Color(64, 64, 64));
+		btnNewButton.setBackground(Color.DARK_GRAY);
 		btnNewButton.setBounds(372, 154, 98, 23);
 		contentPane.add(btnNewButton);
 		
@@ -216,13 +216,13 @@ public class View_Caixa extends JFrame {
 		});
 		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnRemover.setForeground(Color.WHITE);
-		btnRemover.setBackground(Color.DARK_GRAY);
+		btnRemover.setBackground(new Color(204, 0, 0));
 		btnRemover.setBounds(480, 154, 89, 23);
 		contentPane.add(btnRemover);
 		
 		JButton btnConfirmarCompra = new JButton("EFETUAR COMPRA");
 		btnConfirmarCompra.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnConfirmarCompra.setBackground(new Color(60, 179, 113));
+		btnConfirmarCompra.setBackground(new Color(50, 205, 50));
 		btnConfirmarCompra.setForeground(Color.WHITE);
 		btnConfirmarCompra.setBounds(398, 453, 171, 23);
 		contentPane.add(btnConfirmarCompra);
