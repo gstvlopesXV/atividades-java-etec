@@ -20,9 +20,9 @@ public class DB_Connect {
 	
 	void createConnection(){
 		final String DRIVER = "com.mysql.jdbc.Driver";
-		final String URL = "jdbc:mysql://localhost:3306/db_supermercado";
+		final String URL = "jdbc:mysql://localhost:3306/db_supermercado?useTimezone=true&serverTimezone=UTC";
 		final String USER = "root";
-		final String PASSWORD = "";
+		final String PASSWORD = "etec";
 		
 		try {
 			Class.forName(DRIVER);
@@ -33,10 +33,10 @@ public class DB_Connect {
 			con.close();
 		} catch	(ClassNotFoundException e) {
 			//Logger.getLogger(db_connect.class.getName()).log(Level.SEVERE,null, e);
-			JOptionPane.showMessageDialog(null, "Driver n„o encontrado!\n" + e);
+			JOptionPane.showMessageDialog(null, "Driver n√£o encontrado!\n" + e);
 			
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Problemas na conex„o com o banco\n" + e);
+			JOptionPane.showMessageDialog(null, "Problemas na conex√£o com o banco\n" + e);
 		}
 	
 	}
