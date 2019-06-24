@@ -26,8 +26,11 @@ public class DB_Connect {
 		
 		try {
 			Class.forName(DRIVER);
-			Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+				Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
 			
+			
+			
+			con.close();
 		} catch	(ClassNotFoundException e) {
 			//Logger.getLogger(db_connect.class.getName()).log(Level.SEVERE,null, e);
 			JOptionPane.showMessageDialog(null, "Driver não encontrado!\n" + e);
