@@ -21,29 +21,39 @@ public class DB_Login extends View_Login{
 	}
 	
 	public void createConnection(){
-		final String DRIVER = "com.mysql.cj.jdbc.Driver";
-		final String URL = "jdbc:mysql://localhost:3306/db_supermercado?useTimezone=true&serverTimezone=UTC";
+		final String DRIVER = "com.mysql.jdbc.Driver";
+		final String URL = "jdbc:mysql://localhost:3306/db_supermercado";
 		final String USER = "root";
-		final String PASSWORD = "etec";
+		final String PASSWORD = "";
 		
-		try {
+		try {	
+			
 			View_Login login = new View_Login();
 			
 			Class.forName(DRIVER);
 				Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+				System.out.println("BANCO CONECTADO");
 				
-				String sql ="select usuario, senha from tbl_login where usuario = '? and senha = '?'";
+				String username = String.valueOf(login.getUsernameField().getText());
+				String password = String.valueOf(login.getPasswordField().getText());
 				
+				String sql = "select * from tbl_login where usuario='?'  and senha='?'";
+				
+				
+				System.out.println(sql);
 				PreparedStatement pstmt = con.prepareStatement(sql);
+				System.out.println(sql);
+					
+				//String username = String.valueOf(login.getUsernameField().getText());
+				//String password = String.valueOf(login.getPasswordField().getText());
 				
-				String username = login.getUsernameField().getText();
-				String password = login.getPasswordField().getText();
-
-				pstmt.setString(1, username);
-				pstmt.setString(2, password);
+				pstmt.setString(1, login.getUsernameField().toString());
+				pstmt.setString(2, login.getPasswordField().toString());
 				
 				ResultSet rs = pstmt.executeQuery(sql);
-					
+				
+				
+				
 				if(rs.next()) {
 					JOptionPane.showMessageDialog(null, "Bem Vindo!");
 					
