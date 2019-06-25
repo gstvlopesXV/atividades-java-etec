@@ -6,8 +6,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
-import db.DB_Login;
-
 import java.awt.Color;
 
 import javax.swing.JButton;
@@ -15,14 +13,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
 
-public class View_Login extends JFrame {
+import java.sql.*;
 
+public class View_Login extends JFrame {
+	
 	private JPanel contentPane;
 	private JTextField usernameField;
 	private JPasswordField passwordField;
@@ -79,13 +79,51 @@ public class View_Login extends JFrame {
 		
 		JButton btnLogin = new JButton("Entrar");
 		btnLogin.setFont(new Font("Arial", Font.BOLD, 12));
-		btnLogin.setBackground(new Color(255, 51, 51));
+		btnLogin.setBackground(new Color(255, 102, 102));
 		btnLogin.setForeground(Color.WHITE);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DB_Login pro = new DB_Login();
-				pro.createConnection();
+				final String DRIVER = "com.mysql.cj.jdbc.Driver";
+				final String URL = "jdbc:mysql://localhost:3306/db_supermercado?useTimezone=true&serverTimezone=UTC";
+				final String USER = "root";
+				final String PASSWORD = "etec";
 				
+				try {	
+					Class.forName(DRIVER);
+					Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+					
+					String sql = "SELECT * FROM tbl_login WHERE Usuario = ? and Senha = ?";		
+					
+					PreparedStatement statement = con.prepareStatement(sql);
+					
+					statement.setString(1, getUsernameField().getText());
+					statement.setString(2, getPasswordField().getText().toString());
+					
+					ResultSet resultSet = statement.executeQuery();
+					
+	
+					if(resultSet.next()) {
+						View_Menu menu = new View_Menu();
+						JOptionPane.showMessageDialog(null, "Bem vindo ! "+getUsernameField().getText().toUpperCase());
+						menu.setVisible(true);
+						
+						
+					}else {
+						JOptionPane.showMessageDialog(null, "Acesso negado");
+						getUsernameField().setText("");
+						getPasswordField().setText("");
+					}
+					
+					resultSet.close();
+					statement.close();
+					con.close();
+					
+				} catch	(ClassNotFoundException ex) {
+					JOptionPane.showMessageDialog(null, "Driver não encontrado!\n" + e);
+					
+				} catch (SQLException ex) {
+					JOptionPane.showMessageDialog(null, "Problemas na conexão com o banco\n" + e);
+				}
 			}
 		});
 		btnLogin.setBounds(502, 230, 92, 31);

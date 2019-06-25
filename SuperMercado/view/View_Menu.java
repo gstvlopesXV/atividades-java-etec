@@ -13,6 +13,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import java.awt.SystemColor;
 
 public class View_Menu extends JFrame {
 
@@ -40,7 +41,7 @@ public class View_Menu extends JFrame {
 	 */
 	public View_Menu() {
 		setResizable(false);
-		setTitle("JAVA'S SUPERMARKET");
+		setTitle("JAVA'S SUPERMARKET - OPERADOR 1");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 750, 514);
 		contentPane = new JPanel();
@@ -60,37 +61,39 @@ public class View_Menu extends JFrame {
 				janelacaixa.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(36, 78, 320, 372);
+		btnNewButton.setBounds(68, 79, 310, 253);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("REGISTRO");
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 32));
 		btnNewButton_1.setForeground(Color.WHITE);
-		btnNewButton_1.setBackground(new Color(119, 136, 153));
+		btnNewButton_1.setBackground(new Color(255, 102, 102));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				View_ComprasEfetuadas janelaComprasEfetuadas = new View_ComprasEfetuadas();			
 				janelaComprasEfetuadas.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(393, 78, 320, 372);
+		btnNewButton_1.setBounds(388, 79, 310, 253);
 		contentPane.add(btnNewButton_1);
 		
-		JLabel lblSuperMarket = new JLabel("SUPERMARKET");
-		lblSuperMarket.setVerticalAlignment(SwingConstants.TOP);
-		lblSuperMarket.setBackground(new Color(0, 0, 0));
-		lblSuperMarket.setHorizontalAlignment(SwingConstants.LEFT);
-		lblSuperMarket.setForeground(new Color(60, 179, 113));
-		lblSuperMarket.setFont(new Font("Verdana", Font.BOLD, 26));
-		lblSuperMarket.setBounds(314, 22, 230, 32);
-		contentPane.add(lblSuperMarket);
-		
-		JLabel lblJavas = new JLabel("JAVA'S");
+		JLabel lblJavas = new JLabel("OPERADOR 1");
 		lblJavas.setVerticalAlignment(SwingConstants.TOP);
-		lblJavas.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblJavas.setFont(new Font("Tahoma", Font.BOLD, 26));
-		lblJavas.setForeground(new Color(255, 51, 51));
-		lblJavas.setBounds(129, 23, 175, 31);
+		lblJavas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblJavas.setFont(new Font("Tahoma", Font.BOLD, 38));
+		lblJavas.setForeground(new Color(211, 211, 211));
+		lblJavas.setBounds(68, 21, 630, 57);
 		contentPane.add(lblJavas);
+		
+		JButton btnFuncionarios = new JButton("FUNCION\u00C1RIOS");
+		btnFuncionarios.setBackground(SystemColor.textHighlight);
+		btnFuncionarios.setForeground(Color.WHITE);
+		btnFuncionarios.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 32));
+		btnFuncionarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnFuncionarios.setBounds(68, 343, 630, 95);
+		contentPane.add(btnFuncionarios);
 	}
 }
