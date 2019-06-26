@@ -1,0 +1,11 @@
+CREATE DATABASE db_supermercado;
+
+USE db_supermercado;
+
+
+CREATE TABLE tbl_login (
+NomeCompleto varchar(100) not null,
+Usuario varchar(16) not null unique,
+Senha varchar(16) not null
+
+);
