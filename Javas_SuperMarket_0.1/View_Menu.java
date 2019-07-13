@@ -26,8 +26,8 @@ public class View_Menu extends JFrame {
 			public void run() {
 				try {
 					View_Menu frame = new View_Menu();
-
 					frame.setVisible(true);
+							
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -39,10 +39,11 @@ public class View_Menu extends JFrame {
 	 * Create the frame.
 	 */
 	public View_Menu() {
+		
 		setResizable(false);
 		setTitle("JAVA'S SUPERMARKET - OPERADOR 1");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 750, 531);
+		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -60,7 +61,7 @@ public class View_Menu extends JFrame {
 				janelacaixa.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(50, 88, 315, 231);
+		btnNewButton.setBounds(56, 86, 334, 301);
 		contentPane.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("VENDAS");
@@ -73,7 +74,7 @@ public class View_Menu extends JFrame {
 				vendas.setVisible(true);
 			}
 		});
-		btnNewButton_1.setBounds(379, 88, 315, 231);
+		btnNewButton_1.setBounds(400, 86, 334, 301);
 		contentPane.add(btnNewButton_1);
 
 		JLabel lblJavas = new JLabel("OPERADOR 1");
@@ -81,7 +82,7 @@ public class View_Menu extends JFrame {
 		lblJavas.setHorizontalAlignment(SwingConstants.CENTER);
 		lblJavas.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 38));
 		lblJavas.setForeground(new Color(169, 169, 169));
-		lblJavas.setBounds(50, 22, 644, 66);
+		lblJavas.setBounds(48, 22, 686, 66);
 		contentPane.add(lblJavas);
 
 		JButton btnFuncionarios = new JButton("FUNCION\u00C1RIOS");
@@ -92,9 +93,12 @@ public class View_Menu extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				View_MenuFuncionarios funcionario = new View_MenuFuncionarios();
 				funcionario.setVisible(true);
+			
+				
+				
 			}
 		});
-		btnFuncionarios.setBounds(50, 332, 644, 123);
+		btnFuncionarios.setBounds(58, 398, 676, 123);
 		contentPane.add(btnFuncionarios);
 	}
 }

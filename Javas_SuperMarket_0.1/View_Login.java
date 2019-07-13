@@ -84,6 +84,7 @@ public class View_Login extends JFrame {
 		btnLogin.setForeground(Color.WHITE);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				final String DRIVER = "com.mysql.cj.jdbc.Driver";
 				final String URL = "jdbc:mysql://localhost:3306/db_supermercado?useTimezone=true&serverTimezone=UTC";
 				final String USER = "root";
@@ -120,6 +121,8 @@ public class View_Login extends JFrame {
 					resultSet.close();
 					statement.close();
 					con.close();
+					
+					dispose();
 
 				} catch (ClassNotFoundException ex) {
 					JOptionPane.showMessageDialog(null, "Driver não encontrado!\n" + e);

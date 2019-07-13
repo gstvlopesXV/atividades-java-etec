@@ -45,7 +45,7 @@ public class View_MenuFuncionarios extends JFrame {
 		setResizable(false);
 		setBackground(Color.DARK_GRAY);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 352, 395);
+		setBounds(100, 100, 399, 426);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setForeground(Color.DARK_GRAY);
@@ -59,11 +59,11 @@ public class View_MenuFuncionarios extends JFrame {
 		btnMostrarFuncionarios.setBackground(new Color(102, 153, 204));
 		btnMostrarFuncionarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				View_MostrarFuncionarios funcionarios = new View_MostrarFuncionarios();
+				View_CadastrarMostrarFuncionarios funcionarios = new View_CadastrarMostrarFuncionarios();
 				funcionarios.setVisible(true);
 			}
 		});
-		btnMostrarFuncionarios.setBounds(10, 133, 326, 50);
+		btnMostrarFuncionarios.setBounds(28, 105, 326, 74);
 		contentPane.add(btnMostrarFuncionarios);
 
 		JButton btnNewButton = new JButton("REMOVER");
@@ -96,20 +96,24 @@ public class View_MenuFuncionarios extends JFrame {
 		});
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(new Color(102, 153, 204));
-		btnNewButton.setBounds(10, 205, 326, 50);
+		btnNewButton.setBounds(28, 190, 326, 74);
 		contentPane.add(btnNewButton);
 
 		JButton btnAlterarSenha = new JButton("ALTERAR SENHA");
+		btnAlterarSenha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnAlterarSenha.setForeground(Color.WHITE);
 		btnAlterarSenha.setBackground(new Color(102, 153, 204));
-		btnAlterarSenha.setBounds(10, 279, 326, 50);
+		btnAlterarSenha.setBounds(28, 275, 326, 74);
 		contentPane.add(btnAlterarSenha);
 
 		JLabel lblOperador = new JLabel("OPERADOR 1");
 		lblOperador.setForeground(new Color(169, 169, 169));
 		lblOperador.setFont(new Font("Arial Rounded MT Bold", Font.BOLD, 38));
 		lblOperador.setHorizontalAlignment(SwingConstants.CENTER);
-		lblOperador.setBounds(10, 11, 326, 59);
+		lblOperador.setBounds(10, 11, 373, 59);
 		contentPane.add(lblOperador);
 
 		JLabel lblNewLabel = new JLabel("FUNCION\u00C1RIOS");
@@ -117,7 +121,7 @@ public class View_MenuFuncionarios extends JFrame {
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Bahnschrift", Font.BOLD, 18));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(94, 59, 163, 22);
+		lblNewLabel.setBounds(115, 62, 163, 22);
 		contentPane.add(lblNewLabel);
 	}
 }
